@@ -1,0 +1,10 @@
+name: ToolTime
+version: 0.0.1
+description: An example of custom tool durability
+author: mikenon
+main: me.cyberstalk.plugin.tooltime.ToolTime
+depend: [Spout]
+commands:
+  tooltime:
+    description: The main command for ToolTime
+    usage: /sunburn <args>
