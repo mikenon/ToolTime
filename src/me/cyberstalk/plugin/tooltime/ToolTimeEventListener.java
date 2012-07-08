@@ -11,40 +11,39 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.getspout.spoutapi.SpoutManager;
-import org.getspout.spoutapi.inventory.SpoutEnchantment;
 import org.getspout.spoutapi.inventory.SpoutItemStack;
+import org.getspout.spoutapi.material.item.GenericCustomTool;
 import org.getspout.spoutapi.player.SpoutPlayer;
 import org.getspout.spoutapi.sound.SoundEffect;
 
 public class ToolTimeEventListener implements Listener{
 
-	public ToolTimeEventListener() {
-
-	}
+	public ToolTimeEventListener() { }
 	
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent event) {
 		SpoutPlayer player = (SpoutPlayer)event.getPlayer();
 		if (new SpoutItemStack(player.getItemInHand()).isCustomItem()) {
-			int max = new SpoutItemStack(player.getItemInHand()).getEnchantmentLevel(SpoutEnchantment.MAX_DURABILITY);
-			int level = new SpoutItemStack(player.getItemInHand()).getEnchantmentLevel(SpoutEnchantment.DURABILITY);
-			level = level + 1;
-			short lvl = (short) level;
+			SpoutItemStack stack = new SpoutItemStack(player.getItemInHand());
+			int level = GenericCustomTool.getDurability(stack);
 			
-			ItemStack stack;
-			if(ToolTime.maxDur - lvl <= 0){
-				stack = new ItemStack(Material.AIR);
+			if((level+1) > ToolTime.maxDur){
 				playClang(player);
+				if(stack.getAmount() > 1){
+					SpoutItemStack newstack = new SpoutItemStack(ToolTime.tool, (stack.getAmount()-1));
+					player.setItemInHand(newstack);
+				} else {
+					ItemStack newstack = new ItemStack(Material.AIR);
+					player.setItemInHand(newstack);
+				}
 			} else {
-				stack = new SpoutItemStack(ToolTime.tool, 1);
-				stack.addUnsafeEnchantment(SpoutEnchantment.MAX_DURABILITY, ToolTime.maxDur);
-				stack.addUnsafeEnchantment(SpoutEnchantment.DURABILITY, lvl);
+				GenericCustomTool.setDurability(stack, (short) (level + 1));
+				player.setItemInHand(stack);
+				if(ToolTime.keepCount){
+					player.sendMessage((level+1)+" of "+ToolTime.maxDur);
+				}
 			}
-			player.setItemInHand(stack);
 			
-			if(ToolTime.keepCount){
-				player.sendMessage(lvl+" of "+max);
-			}
 		}
 	}
 	

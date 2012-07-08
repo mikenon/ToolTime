@@ -8,9 +8,7 @@ package me.cyberstalk.plugin.tooltime;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.getspout.spoutapi.inventory.SpoutEnchantment;
 import org.getspout.spoutapi.inventory.SpoutItemStack;
 
 public class ToolTime extends JavaPlugin{
@@ -38,13 +36,14 @@ public class ToolTime extends JavaPlugin{
 		switch (args.length) {
 			case 0:
 				player.sendMessage("Tim Taylor would not be proud");
+				player.sendMessage("/tooltime give - gives you a tool");
+				player.sendMessage("/tooltime max [number] - sets durability");
+				player.sendMessage("/tooltime print [true|false] - enable, or disable, printing durability");
 				return true;
 
 			case 1:
 				if(args[0].equalsIgnoreCase("give")) {
-					ItemStack stack = new SpoutItemStack(tool);
-					stack.addUnsafeEnchantment(SpoutEnchantment.MAX_DURABILITY, maxDur);
-					stack.addUnsafeEnchantment(SpoutEnchantment.DURABILITY, 0);
+					SpoutItemStack stack = new SpoutItemStack(tool);
 					player.getWorld().dropItemNaturally(player.getLocation(), stack); 
 					return true;
 				}

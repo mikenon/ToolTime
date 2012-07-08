@@ -12,6 +12,7 @@ public class YouTool extends GenericCustomTool {
 
 	public YouTool(Plugin plugin, String name, String texture) {
 		super(plugin, name, texture);
+		setMaxDurability((short) ToolTime.maxDur);
 	}
 
 }
