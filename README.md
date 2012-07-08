@@ -4,7 +4,9 @@ This is just a quick demo of the functionality recently added to SpoutPlugin/Spo
 Commands
 --------
 **/tooltime give** Drops a Sad Tool right in front of you
+
 **/tooltime max [number]** Sets the number of whacks in the tool
+
 **/tooltime print [true|false]** Enable, or disable, the visual notification of the tool's durability.
 Want More?
 ----------
