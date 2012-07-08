@@ -5,9 +5,9 @@ Commands
 --------
 **/tooltime give** Drops a Sad Tool right in front of you
 
-**/tooltime max [number]** Sets the number of whacks in the tool
+**/tooltime max** [**number**] Sets the number of whacks in the tool
 
-**/tooltime print [true|false]** Enable, or disable, the visual notification of the tool's durability.
+**/tooltime print** [**true**|**false**] Enable, or disable, the visual notification of the tool's durability.
 Want More?
 ----------
 So do I. Send pull requests.
