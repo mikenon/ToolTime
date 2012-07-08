@@ -11,4 +11,4 @@ Want More?
 So do I. Send pull requests.
 License
 -------
-ToolTime is licensed under [http://sam.zoy.org/wtfpl/COPYING](WTFPL). See `license.txt` for details.
+ToolTime is licensed under [WTFPL](http://sam.zoy.org/wtfpl/COPYING). See `license.txt` for details.
